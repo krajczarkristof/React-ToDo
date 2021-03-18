@@ -7,14 +7,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { v4 as uuidv4 } from 'uuid';
 import {Container } from 'react-bootstrap';
 import './App.css';
+import {ITodo} from "./interfaces/ITodo";
 
 function App() {
 //States
 const[inputText,setInputText]=useState("");
-const[todos,setTodos]=useState([]);
+const[todos,setTodos]=useState<Array<ITodo>>([]);
 const[status,setStatus]=useState("all");
 const[statuses,setStatuses]=useState([{id:uuidv4(),name:"all"},{id:uuidv4(),name:"complete"},{id:uuidv4(),name:"active"},{id:uuidv4(),name:"inactive"},{id:uuidv4(),name:"working on"}]);
-const [filteredTodos,setFilteredTodos]=useState([]);
+const [filteredTodos,setFilteredTodos]=useState<Array<ITodo>>([]);
 //Effects
 useEffect(()=>{
   getLocalTodos();

@@ -32,10 +32,15 @@ const Form=({todos,inputText,setTodos, setInputText,setStatus,setStatuses,status
     {
         setStatus(e.target.value);
     }
+    const handleKeyPress = (e:any) => {
+        if (e.key === 'Enter') {
+            submitTodohandler(e);
+        }
+      }
 
     return (
         <Container  className=" rounded input-group p-3 mb-2 bg-secondary text-black">
-            <input value={inputText} onChange={inputTextHangler} placeholder="Your todo..." type="text" className="form-control" aria-label="Text input with dropdown button"/>
+            <input value={inputText} onKeyPress={handleKeyPress} onChange={inputTextHangler} placeholder="Your todo..." type="text" className="form-control" aria-label="Text input with dropdown button"/>
             <Button className= " rounded" onClick={submitTodohandler}><BsPlus/></Button>
             <div className="input-group-append">
                 <select onChange={statusHandler} className=" rounded form-select form-select-sm">
