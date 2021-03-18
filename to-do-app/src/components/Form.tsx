@@ -22,8 +22,11 @@ const Form=({todos,inputText,setTodos, setInputText,setStatus,setStatuses,status
     const submitTodohandler=(e:any)=>
     {   
         e.preventDefault();
-        setTodos([...todos,{text:inputText,date:Date() ,completed:false,status:"uncomplete",id:uuidv4()}]);
+        if(inputText!=="")
+        {
+        setTodos([...todos,{text:inputText,date:Date() ,completed:false,status:"active",id:uuidv4()}]);
         setInputText('');
+        }
     }
     const statusHandler=(e:any)=>
     {
@@ -31,21 +34,17 @@ const Form=({todos,inputText,setTodos, setInputText,setStatus,setStatuses,status
     }
 
     return (
-        <Container  className="input-group p-3 mb-2 bg-secondary text-black">
+        <Container  className=" rounded input-group p-3 mb-2 bg-secondary text-black">
             <input value={inputText} onChange={inputTextHangler} placeholder="Your todo..." type="text" className="form-control" aria-label="Text input with dropdown button"/>
-            <Button onClick={submitTodohandler}><BsPlus/></Button>
+            <Button className= " rounded" onClick={submitTodohandler}><BsPlus/></Button>
             <div className="input-group-append">
-                <select onChange={statusHandler} className="form-select form-select-sm">
+                <select onChange={statusHandler} className=" rounded form-select form-select-sm">
                             { statuses.map((item:any)=>(
                                 <option key={item.id} value={item.name} > { item.name} </option>
                             )) }
                 </select>
           </div>
         </Container>
-        
-      
-
-      
     );
   }
   

@@ -7,19 +7,22 @@ interface props
     todos:any,
     setTodos:any,
     status:any,
+    statuses:any,
 
 }
-const TodoList=({todos,setTodos,filteredTodos,status}:props)=> {
+const TodoList=({todos,setTodos,filteredTodos,status,statuses}:props)=> {
     return (
-        <Container className="input-group p-3 mb-2 bg-secondary text-black">
-          <ul className="list-group">
-            {
+        <Container className=" rounded input-group p-3 mb-2 bg-secondary text-black">
+
+          <ul className=" flex-fill list-group">
+            { 
               filteredTodos.map((todo:any)=>(
-                <Todo key={todo.id} status={status} todos={todos} setTodos={setTodos}todo={todo}/>
+                <Todo key={todo.id} statuses={statuses} status={status} todos={todos} setTodos={setTodos}todo={todo}/>
               ))
             }
             
           </ul>
+
       </Container>
     );
   }

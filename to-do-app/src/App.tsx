@@ -6,14 +6,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import "./App.css";
 import { v4 as uuidv4 } from 'uuid';
 import {Container } from 'react-bootstrap';
-
+import './App.css';
 
 function App() {
 //States
 const[inputText,setInputText]=useState("");
 const[todos,setTodos]=useState([]);
 const[status,setStatus]=useState("all");
-const[statuses,setStatuses]=useState([{id:uuidv4(),name:"all"},{id:uuidv4(),name:"complete"},{id:uuidv4(),name:"uncomplete"}]);
+const[statuses,setStatuses]=useState([{id:uuidv4(),name:"all"},{id:uuidv4(),name:"complete"},{id:uuidv4(),name:"active"},{id:uuidv4(),name:"inactive"},{id:uuidv4(),name:"working on"}]);
 const [filteredTodos,setFilteredTodos]=useState([]);
 //Effects
 useEffect(()=>{
@@ -67,12 +67,12 @@ const getLocalTodos=()=>
   
 }
   return (
-    <Container className="p-3 mb-2 bg-primary  text-black">
+    <Container className="bg-transparent  text-black">
      <header>
-       <h1 className="text-center text-white">Kristóf's Todo List </h1>
+       <h1 className="text-center">Kristóf's Todo List </h1>
      </header>
      <Form inputText={inputText} statuses={statuses} setStatus={setStatus} setStatuses={setStatuses} todos={todos} setTodos={setTodos} setInputText={setInputText}/>
-     <TodoList todos={todos} status={status} filteredTodos={filteredTodos} setTodos={setTodos}/>
+     <TodoList todos={todos} statuses={statuses} status={status} filteredTodos={filteredTodos} setTodos={setTodos}/>
     </Container>
   );
 }
