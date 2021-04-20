@@ -30,17 +30,24 @@ const Todo=({setTodos, todos, todo,status,statuses}:props)=> {
     }
 
     const moveUp=()=>{
-        let array=[...todos];
-        let index=array.indexOf(todo);
-        let elem=array.splice(index,1)[0];
-        array.splice(index-1,0,elem);
-        setTodos(array);
+        let index=todos.indexOf(todo);
+        console.log(index);
+        if(index>0)
+        {
+            let array=[...todos];
+            console.log(index);
+            let elem=array.splice(index,1)[0];
+            array.splice(index-1,0,elem);
+            setTodos(array);
+        }
+
         
 
     }
     const moveDown=()=>{
         let array=[...todos];
         let index=array.indexOf(todo);
+        console.log(index);
         let elem=array.splice(index,1)[0];
         array.splice(index+1,0,elem);
         setTodos(array);
@@ -48,7 +55,7 @@ const Todo=({setTodos, todos, todo,status,statuses}:props)=> {
     }
     return (
         <div className="  rounded  input-group ">
-            <li className= " flex-fill list-group-item ">{ todo.text}</li>
+            <li className= " flex-fill list-group-item ">{todo.text+ "   |   "+ todo.date }</li>
             <Button className= " rounded"  onClick={moveUp}  >
                 <BsChevronDoubleUp/>
             </Button>

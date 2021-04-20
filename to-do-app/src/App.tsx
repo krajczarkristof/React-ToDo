@@ -70,7 +70,7 @@ const getLocalTodos=()=>
   return (
     <Container className="bg-transparent  text-black">
      <header>
-       <h1 className="text-center">Kristóf's Todo List </h1>
+       <h1 className="text-center">Todo List </h1>
      </header>
      <Form inputText={inputText} statuses={statuses} setStatus={setStatus} setStatuses={setStatuses} todos={todos} setTodos={setTodos} setInputText={setInputText}/>
      <TodoList todos={todos} statuses={statuses} status={status} filteredTodos={filteredTodos} setTodos={setTodos}/>

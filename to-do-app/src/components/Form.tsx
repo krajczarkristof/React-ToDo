@@ -24,7 +24,8 @@ const Form=({todos,inputText,setTodos, setInputText,setStatus,setStatuses,status
         e.preventDefault();
         if(inputText!=="")
         {
-        setTodos([...todos,{text:inputText,date:Date() ,completed:false,status:"active",id:uuidv4()}]);
+
+        setTodos([...todos,{text:inputText,date:new Date(),completed:false,status:"active",id:uuidv4()}]);
         setInputText('');
         }
     }
