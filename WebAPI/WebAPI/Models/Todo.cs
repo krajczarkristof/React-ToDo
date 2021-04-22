@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebTodoAPI.Models
+namespace WebAPI.Models
 {
     public class Todo
     {
         [Key]
-        public Guid Id { get; set; }
+        public int id { get; set; }
 
-        [MaxLength(300, ErrorMessage = "Text can only be 300 character")]
+        [Column(TypeName = "nvarchar(300)")]
         public string Text { get; set; }
 
         public DateTime Date { get; set; }
 
         public bool Completed { get; set; }
 
-        [MaxLength(50, ErrorMessage = "Text can only be 50 character")]
+        [Column(TypeName = "nvarchar(50)")]
         public string Status { get; set; }
+
     }
 }

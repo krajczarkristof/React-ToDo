@@ -4,26 +4,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebTodoAPI.Models;
+using WebAPI.Models;
 
-namespace WebTodoAPI.Migrations
+namespace WebAPI.Migrations
 {
-    [DbContext(typeof(TodoContext))]
-    partial class TodoContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(TodoDbContext))]
+    partial class TodoDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WebTodoAPI.Models.Todo", b =>
+            modelBuilder.Entity("WebAPI.Models.Todo", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Completed")
                         .HasColumnType("bit");
@@ -32,14 +33,12 @@ namespace WebTodoAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
-                        .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Text")
-                        .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Todos");
                 });

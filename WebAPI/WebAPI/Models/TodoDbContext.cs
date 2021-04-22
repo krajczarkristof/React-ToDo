@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebTodoAPI.Models
+namespace WebAPI.Models
 {
-    public class TodoContext : DbContext
+    public class TodoDbContext:DbContext
     {
-        public TodoContext(DbContextOptions<TodoContext> options) : base(options)
+        public TodoDbContext(DbContextOptions<TodoDbContext> options) :base(options)
         {
 
         }
