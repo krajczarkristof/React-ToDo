@@ -14,7 +14,7 @@ const TodoList=({  ...props }) => {
         <Container className=" rounded input-group p-3 mb-2 bg-secondary text-black" >
           <ul className=" flex-fill list-group">
               { 
-                props.todoList.map((todo)=>(
+                props.todoListFiltered.map((todo)=>(
                   <Todo key={todo.id} todo={todo}/>
                 ))
               }
@@ -24,7 +24,7 @@ const TodoList=({  ...props }) => {
   }
   
   const mapStateToProps = state => ({
-    todoList: state.todo.list
+    todoListFiltered: state.todo.filteredList
 })
 
 const mapActionToProps = {

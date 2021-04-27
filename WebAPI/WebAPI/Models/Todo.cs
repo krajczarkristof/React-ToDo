@@ -10,11 +10,13 @@ namespace WebAPI.Models
     public class Todo
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Column(TypeName = "nvarchar(300)")]
         public string Text { get; set; }
-
+        
+        public int Order { get; set; }
+        public string Title { get; set; }
         public DateTime Date { get; set; }
 
         public bool Completed { get; set; }

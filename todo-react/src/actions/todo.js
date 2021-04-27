@@ -4,7 +4,19 @@ export const ACTION_TYPES = {
     CREATE: 'CREATE',
     UPDATE: 'UPDATE',
     DELETE: 'DELETE',
-    FETCH_ALL: 'FETCH_ALL'
+    FETCH_ALL: 'FETCH_ALL',
+    FILTER:'FILTER'
+}
+
+export const filterTodo = (filter) => dispatch => {
+    api.todo().fetchAll()
+        .then(response => {
+            dispatch({
+                type: ACTION_TYPES.FILTER,
+                payload: filter
+            })
+        })
+        .catch(err => console.log(err))
 }
 
 export const fetchAll = () => dispatch => {

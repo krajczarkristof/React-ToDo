@@ -1,56 +1,84 @@
 import React,{ useState} from 'react';
-import {Container, Button } from 'react-bootstrap';
+import {Container, Button, Modal } from 'react-bootstrap';
 import { BsPlus } from "react-icons/bs";
 import * as actions from "../actions/todo";
 import { connect } from "react-redux";
+
 const TodoForm=({  ...props })=> {
 
     const[status,setStatus]=useState("all");
-    const[statuses,setStatuses]=useState([{id:1,name:"all"},{id:2,name:"complete"},{id:3,name:"active"},{id:4,name:"inactive"},{id:5,name:"working on"}]);
-    const[inputText,setInputText]=useState("");
+    const[statuses,setStatuses]=useState([{id:1,name:"all"},{id:2,name:"complete"},{id:3,name:"active"},{id:4,name:"inactive"}]);
+    const[inputTitle,setInputTitle]=useState("");
+    const[inputTodo,setInputTodo]=useState("");
+    const[deadline,setDeadline]=useState("");
+    const[show,setShow]=useState(false);
     
-    
-    const inputTextHangler=(e)=>{  
-        setInputText(e.target.value);
+    const inputTitleHandler=(e)=>{  
+        setInputTitle(e.target.value);
+    }
+    const inputTodoHandler=(e)=>{  
+        setInputTodo(e.target.value);
+    }
+    const inputTodoDateHandler=(e)=>{  
+        setDeadline(e.target.value);
     }
     const submitTodohandler=(e)=>{   
         e.preventDefault();
-        if(inputText!=="")
+        if(inputTodo!=="" && inputTitle!=="" && deadline!="")
         {
-        let todo={text:inputText,date:new Date(),completed:false,status:"active",id:0}; 
+        let todo={title:inputTitle,text:inputTodo ,date:deadline,completed:false,order:props.todoListFiltered.length,status:"active",id:0}; 
         props.createTodo(todo)
-        setInputText('');
+        
         }
+        setInputTitle("");
+        setInputTodo("")
+        setDeadline("")
+        setShow(!show)
     }
     const statusHandler=(e)=>{
         setStatus(e.target.value);
+        props.filterTodo(e.target.value);
     }
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            submitTodohandler(e);
-        }
+
+    const handleShow = (e) => {
+        setShow(!show)
+
     }  
+
     
     return (
         <Container  className=" rounded input-group p-3 mb-2 bg-secondary text-black">
-            <input name="todoText" value={inputText} onKeyPress={handleKeyPress} onChange={inputTextHangler} placeholder="Your todo..." type="text" className="form-control" aria-label="Text input with dropdown button"/>
-            <Button className= "rounded" onClick={submitTodohandler}><BsPlus/></Button>
+            <input name="Text" onClick={handleShow} href="#textRef" placeholder="Your todo..." type="text" className="form-control" />
             <div className="input-group-append">
                 <select onChange={statusHandler} className=" rounded form-select form-select-sm">
                             { statuses.map((item)=>(
                                 <option key={item.id} value={item.name} > { item.name} </option>
                             ))}
                 </select>
-          </div>
+            </div>
+
+            <Modal  show={show} >
+                <Modal.Header>New Todo</Modal.Header>
+                <Modal.Body>
+                    <form>        
+                        <div className="form-group"><input name="todoTitle" value={inputTitle} onChange={inputTitleHandler} placeholder="Title..." type="text" className="form-control"/></div>
+                        <div className="form-group"><input type="date" className="form-control" name="todoDate" value={deadline} onChange={inputTodoDateHandler} className="form-control"/></div>
+                        <div className="form-group"><textarea className="form-control" rows="2" name="todotext" value={inputTodo} onChange={inputTodoHandler} > </textarea></div>
+                    </form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className= "rounded" type="button" onClick={submitTodohandler} ><BsPlus/></Button>
+                </Modal.Footer>
+            </Modal>
         </Container>
     );
   }
 
 const mapStateToProps = state => ({
-    todoList: state.todo.list
+    todoListFiltered: state.todo.filteredList
 })
 const mapActionToProps = {
     createTodo: actions.create,
-
+    filterTodo:actions.filterTodo
 }
 export default connect(mapStateToProps,mapActionToProps)(TodoForm);

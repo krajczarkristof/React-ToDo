@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Todo>>> GetDCandidates()
         {
-            return await _context.Todos.ToListAsync();
+            return await _context.Todos.OrderBy(l=>l.Order).ToListAsync();
         }
 
         // GET: api/Todo/5
@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDCandidate(int id, Todo todo)
         {
-            todo.id = id;
+            todo.Id = id;
 
             _context.Entry(todo).State = EntityState.Modified;
 
@@ -73,7 +73,7 @@ namespace WebAPI.Controllers
             _context.Todos.Add(todo);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDCandidate", new { id = todo.id }, todo);
+            return CreatedAtAction("GetDCandidate", new { id = todo.Id }, todo);
         }
 
         // DELETE: api/Todo/5
@@ -94,7 +94,7 @@ namespace WebAPI.Controllers
 
         private bool DCandidateExists(int id)
         {
-            return _context.Todos.Any(e => e.id == id);
+            return _context.Todos.Any(e => e.Id == id);
         }
     }
 }
