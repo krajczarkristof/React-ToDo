@@ -36,37 +36,34 @@ const Todo=({todo,...props})=> {
     const moveUp=()=>{
 
         let index=props.todoListFiltered.indexOf(todo)
+        
         if(index>0)
-        {
-            let order=props.todoListFiltered[index-1].order
-            props.todoListFiltered[index-1].order=todo.order
-            props.updateTodo(props.todoListFiltered[index-1].id, props.todoListFiltered[index-1])
-            todo.order=order
-            props.updateTodo(todo.id, todo)
-            removeData(index,index-1)
+        {      
+            moveTodo(index,-1)
         }
     }
+
+    const moveTodo=(index,number)=>{
+        let order=props.todoListFiltered[index+number].order
+        props.todoListFiltered[index+number].order=todo.order
+        props.updateTodo(props.todoListFiltered[index+number].id, props.todoListFiltered[index+number])
+        todo.order=order
+        props.updateTodo(todo.id, todo)
+        props.moveTodo(todo,number)
+
+
+    }
+
     const moveDown=()=>{
         let index=props.todoListFiltered.indexOf(todo)
-        if(index<props.todoListFiltered.length)
-        {
-            let order=props.todoListFiltered[index+1].order
-            props.todoListFiltered[index+1].order=todo.order
-            props.updateTodo(props.todoListFiltered[index+1].id, props.todoListFiltered[index+1])
-            todo.order=order
-            props.updateTodo(todo.id, todo)
-            removeData(index,index+1)
+
+        if(index<props.todoListFiltered.length-1)
+        {   
+            moveTodo(index,1)
         }
 
     }
-    function removeData(index,number) {
-        
-        console.log(index)
-        props.filteredList=[...props.todoListFiltered.splice(index,1)]
-        props.filteredList=[...props.todoListFiltered.splice(number,0,todo)]
-        console.log(props.todoListFiltered)
 
-    }
     const submitTodohandler=(e)=>{   
         e.preventDefault();
         if(inputTodo!=="" && inputTitle!=="" && deadline!="")
@@ -80,6 +77,10 @@ const Todo=({todo,...props})=> {
     }
     const handleShow = (e) => {
         setShow(!show)
+
+    }  
+    const handleClose = (e) => {
+        setShow(false)
 
     }  
     function formatDate(date) {
@@ -113,7 +114,7 @@ const Todo=({todo,...props})=> {
                             )) }
             </select>
 
-            <Modal  show={show}  >
+            <Modal  show={show} onHide={handleClose} >
                 <Modal.Header>New Todo</Modal.Header>
                 <Modal.Body>
                     <form>        
@@ -136,6 +137,7 @@ const mapStateToProps = state => ({
 })
 const mapActionToProps = {
     deleteTodo: actions.Delete,
-    updateTodo: actions.update
+    updateTodo: actions.update,
+    moveTodo:actions.moveTodo
 }
 export default connect(mapStateToProps,mapActionToProps)(Todo);

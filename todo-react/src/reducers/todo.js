@@ -36,6 +36,13 @@ export const todo = (state = initialState, action) => {
                 filteredList: state.filteredList.filter(x => x.id !== action.payload)
                 
             }
+        case ACTION_TYPES.MOVETODO:
+            return {
+                state,
+                list: listDataMove(state.list,action.payload.todo,action.payload.number),
+                filteredList: listDataMove(state.filteredList,action.payload.todo,action.payload.number)
+                
+            }
         case ACTION_TYPES.FILTER:
             if(action.payload!=="all")
             {
@@ -58,5 +65,16 @@ export const todo = (state = initialState, action) => {
         default:
             return state
     }
+
+    function listDataMove(list,todo,number) {
+        let filteringList=list
+        let index=filteringList.indexOf(todo)
+        filteringList.splice(index,1)
+        filteringList.splice(index+number,0,todo)
+        return filteringList
+
+        
+    }
+
 }
 

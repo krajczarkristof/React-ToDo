@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Models;
+using WebAPI.TodoData;
 
 namespace WebAPI
 {
@@ -32,7 +33,7 @@ namespace WebAPI
             services.AddControllers();
             services.AddDbContext<TodoDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("TodoConnection")));
-
+            services.AddScoped<ITodoData, TodoDatabase>();
             services.AddCors();
             /*services.AddSwaggerGen(c =>
             {

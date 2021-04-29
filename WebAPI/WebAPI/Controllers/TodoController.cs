@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Models;
+using WebAPI.TodoData;
 
 namespace WebAPI.Controllers
 {
@@ -13,88 +14,63 @@ namespace WebAPI.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
-        private readonly TodoDbContext _context;
-        public TodoController(TodoDbContext context)
+        private ITodoData _todoData;
+        public TodoController(ITodoData todoData)
         {
-            _context = context;
+            _todoData = todoData;
         }
         // GET: api/Todo
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Todo>>> GetDCandidates()
+        public async Task<ActionResult<IEnumerable<Todo>>> GetTodos()
         {
-            return await _context.Todos.OrderBy(l=>l.Order).ToListAsync();
+
+            return await _todoData.GetTodos();
         }
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Todo>> GetDCandidate(int id)
+        public async Task<ActionResult<Todo>> GetTodo(int id)
         {
-            var todo = await _context.Todos.FindAsync(id);
-
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            return todo;
+            return await _todoData.GetTodo(id);
         }
 
         // PUT: api/Todo/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDCandidate(int id, Todo todo)
+        public async Task<ActionResult<Todo>> PutTodo(int id, Todo todo)
         {
-            todo.Id = id;
+            var updatedtodo = await _todoData.EditTodo(id, todo);
 
-            _context.Entry(todo).State = EntityState.Modified;
-
-            try
+            if (updatedtodo != null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DCandidateExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return updatedtodo;
+                
             }
 
-            return NoContent();
+            return NotFound();
+
         }
 
         // POST: api/Todo
         [HttpPost]
-        public async Task<ActionResult<Todo>> PostDCandidate(Todo todo)
+        public async Task<ActionResult<Todo>> PostDTodo(Todo todo)
         {
-            _context.Todos.Add(todo);
-            await _context.SaveChangesAsync();
+            var newTodo = await _todoData.AddTodo(todo);
 
-            return CreatedAtAction("GetDCandidate", new { id = todo.Id }, todo);
+            return CreatedAtAction("GetTodo", new { id = newTodo.Id }, newTodo);
         }
 
         // DELETE: api/Todo/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Todo>> DeleteDCandidate(int id)
+        public async Task<ActionResult<Todo>> DeleteTodo(int id)
         {
-            var todo = await _context.Todos.FindAsync(id);
-            if (todo == null)
+            var todo = await _todoData.DeleteTodo(id);
+            if (todo==null)
             {
                 return NotFound();
             }
-
-            _context.Todos.Remove(todo);
-            await _context.SaveChangesAsync();
-
             return todo;
         }
 
-        private bool DCandidateExists(int id)
-        {
-            return _context.Todos.Any(e => e.Id == id);
-        }
+
     }
 }

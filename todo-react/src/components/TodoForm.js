@@ -24,7 +24,7 @@ const TodoForm=({  ...props })=> {
     }
     const submitTodohandler=(e)=>{   
         e.preventDefault();
-        if(inputTodo!=="" && inputTitle!=="" && deadline!="")
+        if(inputTodo !=="" && inputTitle !=="" && deadline !=="")
         {
         let todo={title:inputTitle,text:inputTodo ,date:deadline,completed:false,order:props.todoListFiltered.length,status:"active",id:0}; 
         props.createTodo(todo)
@@ -44,7 +44,10 @@ const TodoForm=({  ...props })=> {
         setShow(!show)
 
     }  
+    const handleClose = (e) => {
+        setShow(false)
 
+    }  
     
     return (
         <Container  className=" rounded input-group p-3 mb-2 bg-secondary text-black">
@@ -57,7 +60,7 @@ const TodoForm=({  ...props })=> {
                 </select>
             </div>
 
-            <Modal  show={show} >
+            <Modal  show={show} onHide={handleClose} >
                 <Modal.Header>New Todo</Modal.Header>
                 <Modal.Body>
                     <form>        

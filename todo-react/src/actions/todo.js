@@ -5,7 +5,18 @@ export const ACTION_TYPES = {
     UPDATE: 'UPDATE',
     DELETE: 'DELETE',
     FETCH_ALL: 'FETCH_ALL',
-    FILTER:'FILTER'
+    FILTER:'FILTER',
+    MOVETODO:'MOVETODO'
+}
+export const moveTodo = (todo,number) => dispatch => {
+    api.todo().fetchAll()
+        .then(response => {
+            dispatch({
+                type: ACTION_TYPES.MOVETODO,
+                payload: {"number":number, "todo":todo}
+            })
+        })
+        .catch(err => console.log(err))
 }
 
 export const filterTodo = (filter) => dispatch => {
