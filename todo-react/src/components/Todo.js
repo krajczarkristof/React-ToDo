@@ -3,7 +3,6 @@ import { Button,Modal } from 'react-bootstrap';
 import { BsTrash,BsChevronDoubleUp,BsChevronDoubleDown} from "react-icons/bs";
 import * as actions from "../actions/todo";
 import { connect } from "react-redux";
-import { BsPlus } from "react-icons/bs";
 const Todo=({todo,...props})=> {
 
     const[status,setStatus]=useState("all");
@@ -66,7 +65,7 @@ const Todo=({todo,...props})=> {
 
     const submitTodohandler=(e)=>{   
         e.preventDefault();
-        if(inputTodo!=="" && inputTitle!=="" && deadline!="")
+        if(inputTodo!=="" && inputTitle!=="" && deadline!=="")
         {
         todo.text=inputTodo;
         todo.title=inputTitle;
@@ -124,7 +123,7 @@ const Todo=({todo,...props})=> {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className= "rounded" type="button" onClick={submitTodohandler} >Back</Button>
+                    <Button className= "rounded" type="button" onClick={submitTodohandler} >Back/Save</Button>
                 </Modal.Footer>
             </Modal>
       </div>

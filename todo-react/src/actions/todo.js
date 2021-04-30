@@ -9,25 +9,21 @@ export const ACTION_TYPES = {
     MOVETODO:'MOVETODO'
 }
 export const moveTodo = (todo,number) => dispatch => {
-    api.todo().fetchAll()
-        .then(response => {
-            dispatch({
-                type: ACTION_TYPES.MOVETODO,
-                payload: {"number":number, "todo":todo}
-            })
-        })
-        .catch(err => console.log(err))
+
+    dispatch({
+            type: ACTION_TYPES.MOVETODO,
+            payload: {"number":number, "todo":todo}
+    })
+
 }
 
 export const filterTodo = (filter) => dispatch => {
-    api.todo().fetchAll()
-        .then(response => {
-            dispatch({
-                type: ACTION_TYPES.FILTER,
-                payload: filter
-            })
-        })
-        .catch(err => console.log(err))
+
+    dispatch({
+            type: ACTION_TYPES.FILTER,
+            payload: filter
+    })
+
 }
 
 export const fetchAll = () => dispatch => {

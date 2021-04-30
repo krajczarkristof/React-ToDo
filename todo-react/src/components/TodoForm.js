@@ -26,7 +26,7 @@ const TodoForm=({  ...props })=> {
         e.preventDefault();
         if(inputTodo !=="" && inputTitle !=="" && deadline !=="")
         {
-        let todo={title:inputTitle,text:inputTodo ,date:deadline,completed:false,order:props.todoListFiltered.length,status:"active",id:0}; 
+        let todo={title:inputTitle,text:inputTodo ,date:deadline,completed:false,order:props.todoList.length,status:"active",id:0}; 
         props.createTodo(todo)
         
         }
@@ -78,7 +78,8 @@ const TodoForm=({  ...props })=> {
   }
 
 const mapStateToProps = state => ({
-    todoListFiltered: state.todo.filteredList
+    todoListFiltered: state.todo.filteredList,
+    todoList:state.todo.list
 })
 const mapActionToProps = {
     createTodo: actions.create,
