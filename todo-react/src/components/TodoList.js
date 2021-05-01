@@ -2,7 +2,7 @@ import React,{ useState, useEffect} from 'react';
 import {Container } from 'react-bootstrap';
 import { connect } from "react-redux";
 import Todo from "./Todo";
-import * as actions from "../actions/todo";
+import * as actions from "../actions/todoActions";
 const TodoList=({  ...props }) => {
  
 

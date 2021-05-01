@@ -8,10 +8,10 @@ using WebAPI.Models;
 
 namespace WebAPI.TodoData
 {
-    public class TodoDatabase : ITodoData
+    public class TodoContext : ITodoData
     {
-        private readonly TodoDbContext _context;
-        public TodoDatabase(TodoDbContext todoContext)
+        private readonly TodoDb _context;
+        public TodoContext(TodoDb todoContext)
         {
             _context = todoContext;
         }

@@ -9,7 +9,6 @@ export const ACTION_TYPES = {
     MOVETODO:'MOVETODO'
 }
 export const moveTodo = (todo,number) => dispatch => {
-
     dispatch({
             type: ACTION_TYPES.MOVETODO,
             payload: {"number":number, "todo":todo}
@@ -18,7 +17,6 @@ export const moveTodo = (todo,number) => dispatch => {
 }
 
 export const filterTodo = (filter) => dispatch => {
-
     dispatch({
             type: ACTION_TYPES.FILTER,
             payload: filter

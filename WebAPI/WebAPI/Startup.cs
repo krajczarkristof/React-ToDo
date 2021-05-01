@@ -31,14 +31,11 @@ namespace WebAPI
         {
 
             services.AddControllers();
-            services.AddDbContext<TodoDbContext>(options =>
+            services.AddDbContext<TodoDb>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("TodoConnection")));
-            services.AddScoped<ITodoData, TodoDatabase>();
+            services.AddScoped<ITodoData, TodoContext>();
             services.AddCors();
-            /*services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
-            });*/
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,8 +50,7 @@ namespace WebAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseSwagger();
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
+                
             }
 
             //app.UseHttpsRedirection();

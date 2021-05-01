@@ -9,7 +9,7 @@ using WebAPI.Models;
 
 namespace WebAPI.Migrations
 {
-    [DbContext(typeof(TodoDbContext))]
+    [DbContext(typeof(TodoDb))]
     [Migration("20210427142511_InitialCreate")]
     partial class InitialCreate
     {

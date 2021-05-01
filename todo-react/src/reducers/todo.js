@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from "../actions/todo";
+import { ACTION_TYPES } from "../actions/todoActions";
 const initialState = {
     list: [],
     filteredList:[]

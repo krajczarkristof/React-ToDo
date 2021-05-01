@@ -1,7 +1,7 @@
 import React,{ useState} from 'react';
 import {Container, Button, Modal } from 'react-bootstrap';
 import { BsPlus } from "react-icons/bs";
-import * as actions from "../actions/todo";
+import * as actions from "../actions/todoActions";
 import { connect } from "react-redux";
 
 const TodoForm=({  ...props })=> {

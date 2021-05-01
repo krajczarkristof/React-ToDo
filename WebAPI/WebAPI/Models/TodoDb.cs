@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Models
 {
-    public class TodoDbContext:DbContext
+    public class TodoDb:DbContext
     {
-        public TodoDbContext(DbContextOptions<TodoDbContext> options) :base(options)
+        public TodoDb(DbContextOptions<TodoDb> options) :base(options)
         {
 
         }

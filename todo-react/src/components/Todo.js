@@ -1,7 +1,7 @@
 import React,{ useState} from 'react';
 import { Button,Modal } from 'react-bootstrap';
 import { BsTrash,BsChevronDoubleUp,BsChevronDoubleDown} from "react-icons/bs";
-import * as actions from "../actions/todo";
+import * as actions from "../actions/todoActions";
 import { connect } from "react-redux";
 const Todo=({todo,...props})=> {
 
