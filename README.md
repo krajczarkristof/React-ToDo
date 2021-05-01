@@ -28,7 +28,14 @@ npm start
 ```
 ### Projekt struktúra
 
-
+```bash
+├───components
+│ ├───Todo
+│ ├───TodoForm
+│ └───TodoList
+├───actions
+└───reducers
+```
 
 A frontend megvalósítása React technológiát vesz igénybe. Kinézetért a Bootstrap felelős. Bővebben...
 [click here](todo-react/README.md).
@@ -57,9 +64,9 @@ Két projekt van egyik maga a megvalósítás másik pedig a teszt.
 ├───WEBAPI
 │   ├───Controllers
 │   ├───Properties
-|   ├───Migrations
-|   ├───TodoData  
-|   └───Models
+│   ├───Migrations
+│   ├───TodoData  
+│   └───Models
 └───Web_Api_Test
 ```
 
