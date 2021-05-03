@@ -70,5 +70,5 @@ Két projekt van egyik maga a megvalósítás másik pedig a teszt.
 └───Web_Api_Test
 ```
 
-A backend megvalósítása ASP.NET Core Web Api alapul.Bővebben...
+A backend megvalósítása ASP.NET Core Web Api-n alapul. Bővebben...
 [click here](WebAPI/README.md).
