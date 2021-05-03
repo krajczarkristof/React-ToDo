@@ -19,6 +19,7 @@ A **TodoData** mappában maga az adatbázis kommunikáció zajlik, itt kérjük 
 
 
 **GET /api/Todo**
+
 Válasz:
 ```bash
 Status: 200 OK
@@ -45,6 +46,7 @@ Status: 200 OK
 ```
 
 **GET /api/Todo/{id}**
+
 Válasz:
 ```bash
 Status: 200 OK
@@ -71,6 +73,7 @@ JSON body:
     "status": "active"
 }
 ```
+
 Válasz:
 ```bash
 Status: 201 Created
@@ -86,6 +89,7 @@ Status: 201 Created
 ```
 
 **DELETE /api/Todo/{id}**
+
 Válasz:
 ```bash
 Status: 200 OK
@@ -110,6 +114,7 @@ JSON body:
 
 }
 ```
+
 Válasz:
 ```bash
 Status: 200 OK
