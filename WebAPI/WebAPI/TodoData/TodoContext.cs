@@ -16,14 +16,14 @@ namespace WebAPI.TodoData
             _context = todoContext;
         }
 
-        public  Todo AddTodo(Todo todo)
+        public async Task<Todo> AddTodo(Todo todo)
         {
             _context.Todos.Add(todo);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return todo;
         }
 
-        public  Todo DeleteTodo(int id)
+        public async Task<Todo> DeleteTodo(int id)
         {
             var todo =  _context.Todos.Find(id);
             if (todo == null)
@@ -32,11 +32,11 @@ namespace WebAPI.TodoData
             }
 
             _context.Todos.Remove(todo);
-             _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return todo;
         }
 
-        public  Todo EditTodo(int id,Todo todo)
+        public async Task<Todo> EditTodo(int id,Todo todo)
         {
             todo.Id = id;
 
@@ -44,7 +44,7 @@ namespace WebAPI.TodoData
 
             try
             {
-                 _context.SaveChangesAsync();
+                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -61,14 +61,14 @@ namespace WebAPI.TodoData
             return todo;
         }
 
-        public  Todo GetTodo(int id)
+        public async Task<Todo> GetTodo(int id)
         {
-            return  _context.Todos.Find(id);
+            return await  _context.Todos.FindAsync(id);
         }
 
-        public  List<Todo> GetTodos()
+        public async Task<List<Todo>> GetTodos()
         {
-            return  _context.Todos.OrderBy(l => l.Order).ToList();
+            return  await _context.Todos.OrderBy(l => l.Order).ToListAsync();
         }
 
         private bool DCandidateExists(int id)

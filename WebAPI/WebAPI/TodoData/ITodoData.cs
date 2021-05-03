@@ -9,15 +9,15 @@ namespace WebAPI.TodoData
 {
     public interface ITodoData
     {
-        List<Todo> GetTodos();
+        Task<List<Todo>> GetTodos();
 
-        Todo GetTodo(int id);
+        Task<Todo> GetTodo(int id);
 
-        Todo AddTodo(Todo todo);
+        Task<Todo> AddTodo(Todo todo);
 
-        Todo EditTodo(int id,Todo todo);
+        Task<Todo> EditTodo(int id,Todo todo);
 
-        Todo DeleteTodo(int id);
+        Task<Todo> DeleteTodo(int id);
     }
 
 }

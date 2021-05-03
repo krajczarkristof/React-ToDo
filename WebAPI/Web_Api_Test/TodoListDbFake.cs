@@ -39,29 +39,45 @@ namespace Web_Api_Test
 
             };
         }
-        public Todo AddTodo(Todo todo)
+        public Task<Todo> AddTodo(Todo todo)
         {
-            throw new NotImplementedException();
+            todos.Add(todo);
+            return Task.FromResult(todo);
         }
 
-        public Todo DeleteTodo(int id)
+        public Task<Todo> DeleteTodo(int id)
         {
-            throw new NotImplementedException();
+            Todo deletedTodo=null;
+            foreach (var todo in todos)
+                if (todo.Id == id)
+                {
+                    deletedTodo = todo;
+                    todos.Remove(todo);
+                    break;
+                }
+            return Task.FromResult(deletedTodo);
         }
 
-        public Todo EditTodo(int id, Todo todo)
+        public Task<Todo> EditTodo(int id, Todo todo)
         {
-            throw new NotImplementedException();
+            var result = todos.Find(t => t.Id == id);
+            if (result == null) return null;
+
+            result.Title = todo.Title;
+            result.Date = todo.Date;
+            result.Text = todo.Text;
+
+            return Task.FromResult(result);
         }
 
-        public Todo GetTodo(int id)
+        public Task<Todo> GetTodo(int id)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(todos.Find(t=>t.Id==id));
         }
 
-        public List<Todo> GetTodos()
+        public  Task<List<Todo>> GetTodos()
         {
-            return todos;
+            return  Task.FromResult(todos);
         }
     }
 }

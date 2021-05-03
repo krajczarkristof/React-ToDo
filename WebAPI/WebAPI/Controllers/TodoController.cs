@@ -21,24 +21,24 @@ namespace WebAPI.Controllers
         }
         // GET: api/Todo
         [HttpGet]
-        public  ActionResult<IEnumerable<Todo>> GetTodos()
+        public async Task<ActionResult<IEnumerable<Todo>>> GetTodos()
         {
 
-            return  _todoData.GetTodos();
+            return await _todoData.GetTodos();
         }
 
         // GET: api/Todo/5
         [HttpGet("{id}")]
-        public  ActionResult<Todo> GetTodo(int id)
+        public async Task<ActionResult<Todo>> GetTodo(int id)
         {
-            return  _todoData.GetTodo(id);
+            return await _todoData.GetTodo(id);
         }
 
         // PUT: api/Todo/5
         [HttpPut("{id}")]
-        public  ActionResult<Todo> PutTodo(int id, Todo todo)
+        public async Task<ActionResult<Todo>> PutTodo(int id, Todo todo)
         {
-            var updatedtodo =  _todoData.EditTodo(id, todo);
+            var updatedtodo = await _todoData.EditTodo(id, todo);
 
             if (updatedtodo != null)
             {
@@ -52,18 +52,18 @@ namespace WebAPI.Controllers
 
         // POST: api/Todo
         [HttpPost]
-        public  ActionResult<Todo> PostDTodo(Todo todo)
+        public async Task<ActionResult<Todo>> PostDTodo(Todo todo)
         {
-            var newTodo =  _todoData.AddTodo(todo);
+            var newTodo = await _todoData.AddTodo(todo);
 
             return CreatedAtAction("GetTodo", new { id = newTodo.Id }, newTodo);
         }
 
         // DELETE: api/Todo/5
         [HttpDelete("{id}")]
-        public  ActionResult<Todo> DeleteTodo(int id)
+        public async Task<ActionResult<Todo>> DeleteTodo(int id)
         {
-            var todo =  _todoData.DeleteTodo(id);
+            var todo = await _todoData.DeleteTodo(id);
             if (todo==null)
             {
                 return NotFound();
