@@ -19,8 +19,8 @@ A **TodoData** mappában maga az adatbázis kommunikáció zajlik, itt kérjük 
 
 
 **GET /api/Todo**
-Válasz
-
+Válasz:
+```bash
 Status: 200 OK
 [
     {
@@ -42,10 +42,11 @@ Status: 200 OK
         "status": "complete"
     }
 ]
+```
 
 **GET /api/Todo/{id}**
-Válasz
-
+Válasz:
+```bash
 Status: 200 OK
 {
     "id": 1,
@@ -56,9 +57,10 @@ Status: 200 OK
     "completed": false,
     "status": "active"
 }
-
+```
 
 **POST /api/Todo**
+```bash
 JSON body:
 {
     "text": "postman!",
@@ -68,9 +70,9 @@ JSON body:
     "completed": false,
     "status": "active"
 }
-
-Válasz
-
+```
+Válasz:
+```bash
 Status: 201 Created
 {
     "id": 12,
@@ -81,11 +83,11 @@ Status: 201 Created
     "completed": false,
     "status": "active"
 }
-
+```
 
 **DELETE /api/Todo/{id}**
-Default response
-
+Válasz:
+```bash
 Status: 200 OK
 {
     "id": 12,
@@ -96,9 +98,10 @@ Status: 200 OK
     "completed": false,
     "status": "active"
 }
-
+```
 
 **PUT /api/Todo/{id}**
+```bash
 JSON body:
 
 {
@@ -106,9 +109,9 @@ JSON body:
     "date": "2021-10-15T00:00:00",
 
 }
-
-Válasz
-
+```
+Válasz:
+```bash
 Status: 200 OK
 {
     "id": 12,
@@ -119,3 +122,4 @@ Status: 200 OK
     "completed": false,
     "status": "active"
 }
+```
