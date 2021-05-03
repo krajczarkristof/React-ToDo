@@ -51,8 +51,8 @@ A frontend megvalósítása React technológiát vesz igénybe. Kinézetért a B
  - .NET SDK 5.0+
  - Microsoft SQL Server 2016+
  - Nuget packages installed
-  - Microsoft.EntityFrameworkCore.SqlServer 5.0.3
-  - Microsoft.EntityFrameworkCore.Design 5.0.3
+   - Microsoft.EntityFrameworkCore.SqlServer 5.0.3
+   - Microsoft.EntityFrameworkCore.Design 5.0.3
 
 Miután ezeket telepítettük indíthatjuk a projektünket.
 
