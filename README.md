@@ -55,7 +55,11 @@ A frontend megvalósítása React technológiát vesz igénybe. Kinézetért a B
    - Microsoft.EntityFrameworkCore.SqlServer 5.0.3
    - Microsoft.EntityFrameworkCore.Design 5.0.3
 
-Miután ezeket telepítettük indíthatjuk a projektünket.
+Miután ezeket telepítettük már csak az adatbázist kell migrálni, majd frissíteni az adatbázist vele aztán indíthatjuk a projektünket.
+```
+Add-Migration
+Update-Database
+```
 
 ### Projekt struktúra
 
