@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 const Todo=({todo,...props})=> {
 
     const[status,setStatus]=useState("all");
-    const[statuses,setStatuses]=useState([{id:1,name:"complete"},{id:2,name:"active"},{id:3,name:"inactive"}]);
+    const[statuses,setStatuses]=useState([{id:1,name:"complete"},{id:2,name:"active"},{id:3,name:"inactive"},{id:4,name:"postponed"}]);
     const[inputTitle,setInputTitle]=useState(todo.title);
     const[inputTodo,setInputTodo]=useState(todo.text);
     const[deadline,setDeadline]=useState(todo.date);
