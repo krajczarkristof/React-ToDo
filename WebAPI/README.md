@@ -15,6 +15,8 @@ Két projekt található, a WebApi projektben szerepelnek a Properties/Controlle
 A **Models** mappában található az adatbázis és a tábla létrehozásához szükséges osztályok, ebből generálódik a migráció, valamint maga a teendőt leíró osztály entitás itt található.
 A **TodoData** mappában maga az adatbázis kommunikáció zajlik, itt kérjük le az adatokat és szolgáljuk ki a kontrollereket, ebben az esetben egyet. Valamint a "dependency injection" elősegítő interface is itt található.
 
+Web_Api_Test a kontrollert teszteli Mock adatokkal.
+
 ## Kérések/Válaszok
 
 
